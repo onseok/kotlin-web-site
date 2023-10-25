@@ -187,7 +187,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile.class).configu
 
 To avoid JVM target incompatibility, [configure a toolchain](#gradle-java-toolchains-support) or align JVM versions manually.
 
-#### What can go wrong if not checking targets compatibility {initial-collapse-state="collapsed"}
+#### What can go wrong if targets are incompatible {initial-collapse-state="collapsed"}
 
 There are two ways of manually setting JVM targets for Kotlin and Java source sets:
 * The implicit way via [setting up a Java toolchain](#gradle-java-toolchains-support).
@@ -1149,6 +1149,39 @@ dependencies {
 
 </tab>
 </tabs>
+
+## Declare repositories
+
+To declare a publicly-available repository so that you can use its open source dependencies, set the name of the repository
+in the `repositories` block:
+
+<tabs group="build-script">
+<tab title="Kotlin" group-key="kotlin">
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+```
+</tab>
+<tab title="Groovy" group-key="groovy">
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+```
+</tab>
+</tabs>
+
+Popular repositories are the [Maven Central Repository](https://central.sonatype.com/) and [Google's Maven Repository](https://maven.google.com/web/index.html).
+
+> We recommend that you avoid adding `mavenLocal()` as a repository. If you declare `mavenLocal()` as a repository then you
+> may experience problems when switching between Gradle and Maven projects. If you must add the `mavenLocal()` repository,
+> then add it as the last repository in your `repositories` block. For more information, see
+> [The case for mavenLocal()](https://docs.gradle.org/current/userguide/declaring_repositories.html#sec:case-for-maven-local).
+> 
+{type="warning"}
 
 ## What's next?
 

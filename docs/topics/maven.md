@@ -6,7 +6,7 @@ Maven is a build system that you can use to build and manage any Java-based proj
 
 The *kotlin-maven-plugin* compiles Kotlin sources and modules. Currently, only Maven v3 is supported.
 
-Define the version of Kotlin you want to use via the `kotlin.version` property:
+Define the version of Kotlin you want to use  in your `pom.xml` file via the `kotlin.version` property:
 
 ```xml
 <properties>
@@ -22,6 +22,27 @@ To use JDK 17, in your `.mvn/jvm.config` file, add:
 --add-opens=java.base/java.lang=ALL-UNNAMED
 --add-opens=java.base/java.io=ALL-UNNAMED
 ```
+
+## Declare repositories
+
+To access artifacts in repositories that can be consumed by Maven builds, specify the ID and URL of each repository in
+the `<repositories>` tag:
+
+```xml
+<repositories>
+    <repository>
+        <id>mavenCentral</id>
+        <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+</repositories>
+```
+
+> We recommend that you avoid adding `mavenLocal()` as a repository. If you declare `mavenLocal()` as a repository then you
+> may experience problems when switching between Gradle and Maven projects. If you must add the `mavenLocal()` repository,
+> then add it as the last repository in your `<repositories>` tag. For more information, see
+> [The case for mavenLocal()](https://docs.gradle.org/current/userguide/declaring_repositories.html#sec:case-for-maven-local).
+>
+{type="warning"}
 
 ## Set dependencies
 
