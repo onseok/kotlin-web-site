@@ -12,9 +12,9 @@ You can iterate over these characters with a `for` loop:
 
 ```kotlin
 fun main() {
-val str = "abcd"
-//sampleStart
-for (c in str) {
+    val str = "abcd"
+    //sampleStart
+    for (c in str) {
     println(c)
 }
 //sampleEnd
@@ -29,8 +29,14 @@ All operations that transform strings return their results in a new `String` obj
 fun main() {
 //sampleStart
     val str = "abcd"
-    println(str.uppercase()) // Create and print a new String object
-    println(str) // The original string remains the same
+   
+    // create and print a new String object
+    println(str.uppercase())
+    // ABCD
+   
+    // the original string remains the same
+    println(str) 
+    // abcd
 //sampleEnd
 }
 ```
@@ -42,8 +48,9 @@ as the first element in the expression is a string:
 ```kotlin
 fun main() {
 //sampleStart
-val s = "abc" + 1
-println(s + "def")
+    val s = "abc" + 1
+    println(s + "def")
+    // abc1def    
 //sampleEnd
 }
 ```
@@ -105,7 +112,8 @@ A template expression starts with a dollar sign (`$`) and consists of either a n
 fun main() {
 //sampleStart
     val i = 10
-    println("i = $i") // Prints "i = 10"
+    println("i = $i") 
+    // i = 10
 //sampleEnd
 }
 ```
@@ -117,7 +125,8 @@ or an expression in curly braces:
 fun main() {
 //sampleStart
     val s = "abc"
-    println("$s.length is ${s.length}") // Prints "abc.length is 3"
+    println("$s.length is ${s.length}") 
+    // abc.length is 3
 //sampleEnd
 }
 ```
@@ -133,3 +142,35 @@ val price = """
 ${'$'}_9.99
 """
 ```
+## String formatting
+To deal with complex formatting requirements, use the `String.format()` function.  It uses a format string that defines 
+how the given arguments look like. The format string contains placeholders (`%`)  and
+[format specifiers](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html). In the output, 
+the arguments replace the placeholders and show the format that the specifiers define:
+
+```kotlin
+fun main() {
+    //sampleStart
+    // format to add zeroes and make a length of seven
+    val integerNumber = String.format("%07d", 31416)
+    println(integerNumber)
+    // 0031416
+
+    // format with four decimals and sign
+    val floatNumber = String.format("%+.4f", 3.141592)
+    println(floatNumber)
+    // +3.1416
+
+    // format with upper case for two placeholders
+    val string = String.format("%S %S", "hello", "world")
+    println(string)
+    // HELLO WORLD
+    //sampleEnd
+}
+
+```
+{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+
+This function provides similar functionality to string templates. In comparison, the `String.format()` function is 
+more versatile because you have many options for formatting, and it happens during runtime. In contrast, this function is 
+also more error-prone because it is easy to mismatch the number or position of the arguments with their corresponding placeholders.
