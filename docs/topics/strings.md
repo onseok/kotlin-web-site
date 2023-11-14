@@ -15,8 +15,8 @@ fun main() {
     val str = "abcd"
     //sampleStart
     for (c in str) {
-    println(c)
-}
+        println(c)
+    }
 //sampleEnd
 }
 ```
@@ -142,11 +142,11 @@ val price = """
 ${'$'}_9.99
 """
 ```
+
 ## String formatting
-To deal with complex formatting requirements, use the `String.format()` function.  It uses a format string that defines 
-how the given arguments look like. The format string contains placeholders (`%`)  and
-[format specifiers](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html). In the output, 
-the arguments replace the placeholders and show the format that the specifiers define:
+To deal with complex formatting requirements, use the [`String.format()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html) 
+function. It uses a format string that defines how the given arguments look like. The format string contains placeholders (`%`) 
+and format specifiers. In the output, the arguments replace the placeholders and show the format that the specifiers define:
 
 ```kotlin
 fun main() {
@@ -161,7 +161,7 @@ fun main() {
     println(floatNumber)
     // +3.1416
 
-    // format with upper case for two placeholders
+    // format with uppercase for two placeholders
     val string = String.format("%S %S", "hello", "world")
     println(string)
     // HELLO WORLD
