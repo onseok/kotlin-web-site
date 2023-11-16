@@ -25,21 +25,20 @@ To use JDK 17, in your `.mvn/jvm.config` file, add:
 
 ## Declare repositories
 
-To access artifacts in repositories that can be consumed by Maven builds, specify the ID and URL of each repository in
-the `<repositories>` element:
+By default, the `mavenCentral` repository is available for all Maven projects. To access artifacts in other repositories,
+specify the ID and URL of each repository in the `<repositories>` element:
 
 ```xml
 <repositories>
     <repository>
-        <id>mavenCentral</id>
-        <url>https://repo1.maven.org/maven2/</url>
+        <id>spring-repo</id>
+        <url>https://repo.spring.io/release</url>
     </repository>
 </repositories>
 ```
 
-> If you declare `mavenLocal()` as a repository and you also work with Gradle projects, then you
-> may experience problems when switching between Gradle and Maven projects. For more information, see
-> [Declare repositories](gradle-configure-project.md#declare-repositories).
+> If you declare `mavenLocal()` as a repository in a Gradle project, then you may experience problems when switching 
+> between Gradle and Maven projects. For more information, see [Declare repositories](gradle-configure-project.md#declare-repositories).
 >
 {type="note"}
 
