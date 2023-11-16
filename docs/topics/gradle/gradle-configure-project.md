@@ -11,7 +11,7 @@ and [configure the project's dependencies](#configure-dependencies) there.
 
 ## Apply the plugin
 
-To apply the Kotlin Gradle plugin, use the [`plugins` block](https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block)
+To apply the Kotlin Gradle plugin, use the [`plugins{}` block](https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block)
 from the Gradle plugins DSL:
 
 <tabs group="build-script">
@@ -601,7 +601,7 @@ plugins {
 ### Kotlin and Java sources for JavaScript
 
 This plugin only works for Kotlin files, so it is recommended that you keep Kotlin and Java files separate (if the
-project contains Java files). If you don't store them separately, specify the source folder in the `sourceSets` block:
+project contains Java files). If you don't store them separately, specify the source folder in the `sourceSets{}` block:
 
 <tabs group="build-script">
 <tab title="Kotlin" group-key="kotlin">
@@ -665,7 +665,7 @@ project.plugins.withType(KotlinBasePlugin.class) {
 ## Configure dependencies
 
 To add a dependency on a library, set the dependency of the required [type](#dependency-types) (for example, `implementation`) in the
-`dependencies` block of the source sets DSL.
+`dependencies{}` block of the source sets DSL.
 
 <tabs group="build-script">
 <tab title="Kotlin" group-key="kotlin">
@@ -1153,7 +1153,7 @@ dependencies {
 ## Declare repositories
 
 To declare a publicly-available repository so that you can use its open source dependencies, set the name of the repository
-in the `repositories` block:
+in the `repositories{}` block:
 
 <tabs group="build-script">
 <tab title="Kotlin" group-key="kotlin">
@@ -1176,12 +1176,41 @@ repositories {
 
 Popular repositories are the [Maven Central Repository](https://central.sonatype.com/) and [Google's Maven Repository](https://maven.google.com/web/index.html).
 
-> We recommend that you avoid adding `mavenLocal()` as a repository. If you declare `mavenLocal()` as a repository then you
+> If you also work with Maven projects then we recommend that you avoid adding `mavenLocal()` as a repository because you
 > may experience problems when switching between Gradle and Maven projects. If you must add the `mavenLocal()` repository,
-> then add it as the last repository in your `repositories` block. For more information, see
+> then add it as the last repository in your `repositories{}` block. For more information, see
 > [The case for mavenLocal()](https://docs.gradle.org/current/userguide/declaring_repositories.html#sec:case-for-maven-local).
 > 
 {type="warning"}
+
+If you need to declare the same repositories in more than one subproject, declare the repositories centrally in your
+`settings.gradle(.kts)` file via the `dependencyResolutionManagement{}` block:
+
+<tabs group="build-script">
+<tab title="Kotlin" group-key="kotlin">
+
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+```
+</tab>
+<tab title="Groovy" group-key="groovy">
+
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+```
+</tab>
+</tabs>
+
+Any declared repositories in subprojects override repositories declared centrally. For more information on how to control
+this behavior and what options are available, see Gradle's documentation: [Centralized repository declaration](https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration).
 
 ## What's next?
 
