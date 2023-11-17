@@ -12,8 +12,8 @@ You can iterate over these characters with a `for` loop:
 
 ```kotlin
 fun main() {
-    val str = "abcd"
-    //sampleStart
+    val str = "abcd" 
+//sampleStart
     for (c in str) {
         println(c)
     }
@@ -30,11 +30,11 @@ fun main() {
 //sampleStart
     val str = "abcd"
    
-    // create and print a new String object
+    // Creates and prints a new String object
     println(str.uppercase())
     // ABCD
    
-    // the original string remains the same
+    // The original string remains the same
     println(str) 
     // abcd
 //sampleEnd
@@ -144,33 +144,39 @@ ${'$'}_9.99
 ```
 
 ## String formatting
-To deal with complex formatting requirements, use the [`String.format()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html) 
-function. It uses a format string that defines how the given arguments look like. The format string contains placeholders (`%`) 
-and format specifiers. In the output, the arguments replace the placeholders and show the format that the specifiers define:
+
+To format a string to your specific requirements, use the [`String.format()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html) function that is available for the Kotlin/JVM platform. 
+
+The `String.format()` function accepts a format string and one or more arguments. The format string contains one placeholder 
+(`%`) for each argument to be formatted, followed by format specifiers. These format specifiers are formatting instructions 
+that indicate how the argument (associated with that specific placeholder) should look like. In the output, each argument fills 
+its corresponding placeholder and shows the format that the format specifiers define:
 
 ```kotlin
-fun main() {
-    //sampleStart
-    // format to add zeroes and make a length of seven
+fun main() { 
+//sampleStart
+    // Formats to add zeroes and make a length of seven
     val integerNumber = String.format("%07d", 31416)
     println(integerNumber)
     // 0031416
 
-    // format with four decimals and sign
+    // Formats with four decimals and sign
     val floatNumber = String.format("%+.4f", 3.141592)
     println(floatNumber)
     // +3.1416
 
-    // format with uppercase for two placeholders
-    val string = String.format("%S %S", "hello", "world")
-    println(string)
+    // Formats with uppercase for two placeholders
+    val helloString = String.format("%S %S", "hello", "world")
+    println(helloString)
     // HELLO WORLD
-    //sampleEnd
+//sampleEnd    
 }
-
 ```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+{interpolate-variables="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
 
-This function provides similar functionality to string templates. In comparison, the `String.format()` function is 
-more versatile because you have many options for formatting, and it happens during runtime. In contrast, this function is 
-also more error-prone because it is easy to mismatch the number or position of the arguments with their corresponding placeholders.
+The `String.format()` function provides similar functionality to string templates. In comparison, the 
+`String.format()` function is more versatile because you have many options for formatting. Besides, the `String.format()` 
+function operates during runtime, allowing flexibility for debugging, reusing format logic, and handling dynamic data such as user input.
+
+In contrast, the `String.format()` function is also more error-prone than string templates because it is easy to 
+mismatch the number or position of the arguments with their corresponding placeholders.
